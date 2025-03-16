@@ -17,34 +17,19 @@ public class Main {
         }
 
         int left = 0;
-        int right = prices.length;
+        int right = prices.length - 1;
+        int result = prices.length;
 
-        while (left < right) {
-            int middle = (left + right) / 2;
-            if (prices[middle] == money) {
-                if (prices[middle - 1] ==  money && prices[middle + 1] ==  money)  {
-                    for (int i = prices[middle + 1]; i < prices.length; i++) {
-                        if (prices[i] >  money){
-                            return prices.length - i;
-                        }
-                    }
-                } else {
-                    return prices.length - middle - 1;
-                }
-
-            } else if (prices[middle] > money) { //26
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (prices[middle] > money) {
+                // Нашли элемент, который больше money, но продолжаем искать левее
+                result = middle;
                 right = middle - 1;
-                if (prices[right] < money) {
-                    return right - 1;
-                }
-
-            } else if (prices[middle] < money) {
+            } else {
                 left = middle + 1;
-                if (prices[left] > money) {
-                    return prices.length - left;
-                }
             }
         }
-        return 0;
+        return prices.length - result;
     }
 }

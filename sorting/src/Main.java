@@ -20,23 +20,12 @@ public class Main {
      */
     public static int[] mergeAll(int[][] teams) {
         // Ваш код
-        int[] newTeamsA = new int[teams[0].length];
-        int[] newTeamsB = new int[teams[1].length];
-        int[] newTeamsC = new int[teams[2].length];
-        for (int i = 0; i < newTeamsA.length; i++) {
-            newTeamsA[i] = teams[0][i];
+        int[] result = teams[0]; // Начинаем с первого массива
 
+        for (int i = 1; i < teams.length; i++) {
+            result = merge(result, teams[i]); // Сливаем текущий результат с очередным массивом
         }
-        for (int i = 0; i < newTeamsB.length; i++) {
-            newTeamsB[i] = teams[1][i];
-
-        }
-        for (int i = 0; i < newTeamsC.length; i++) {
-            newTeamsC[i] = teams[2][i];
-
-        }
-        return Arrays.copyOfRange(merge(merge(newTeamsA, newTeamsB), newTeamsC), 0, 10);
-
+        return result;
     }
 
     /**
@@ -56,13 +45,7 @@ public class Main {
                 newTeamResult[k++] = teamB[j++];
             }
         }
-        while (i < teamA.length) {
-            newTeamResult[k++] = teamA[i++];
-        }
-        while (j < teamB.length) {
-            newTeamResult[k++] = teamB[j++];
-        }
 
-        return newTeamResult;
+        return Arrays.copyOfRange(newTeamResult, 0, 10);
     }
 }

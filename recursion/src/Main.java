@@ -28,19 +28,22 @@ public class Main {
         if (memory[day] != 0) {
             return memory[day];
         }
+        // Вычисляем предыдущий день и день, отстоящий на три дня назад
         int prev = day -1;
         int prePrePrev = day - 3;
 
+        // Проверяем, совпадает ли prev или prePrePrev с каким-либо числом в startNumbers
         for (int number : startNumbers) {
             if (prev == number){
-                memory[day] = prev;
+                memory[day] = prev; // Сохраняем значение в memory
                 return prev;
             } else if (prePrePrev == number){
-                memory[day] = prePrePrev;
+                memory[day] = prePrePrev; // Сохраняем значение в memory
                 return prePrePrev;
             }
 
         }
+        // Если совпадений не найдено, рекурсивно вычисляем значение для текущего дня
         memory[day] = chooseHobbyRecursive(startNumbers, prev, memory) + chooseHobbyRecursive(startNumbers, prePrePrev, memory);
 
         return memory[day];
