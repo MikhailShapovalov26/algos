@@ -36,9 +36,9 @@ public class Main {
             return null;
         }
 
-        int[] newTeamResult = new int[teamA.length + teamB.length];
+        int[] newTeamResult = new int[10];
         int i = 0, j = 0, k = 0;
-        while (i < teamA.length && j < teamB.length) {
+        while (i+j <10) {
             if (teamA[i] > teamB[j]) {
                 newTeamResult[k++] = teamA[i++];
             } else {
@@ -46,6 +46,6 @@ public class Main {
             }
         }
 
-        return Arrays.copyOfRange(newTeamResult, 0, 10);
+        return newTeamResult;
     }
 }
